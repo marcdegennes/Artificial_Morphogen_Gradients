@@ -16,6 +16,10 @@ Science-Part1-Apical-Gradients.ipynb
 
 Science -Part1-Invasion of tissue by a GFP bath .ipynb
 
+Science-Part2_two-receptors.ipynb
+
+In this notebook we define the dynamics of the two-receptor artificial gradient model studied the the 2nd part of the paper. 
+
 
 References
 
