@@ -6,7 +6,7 @@ The codes describe the measurement and analysis of experimental data, as well as
 **Measuring_gradient_properties.ipynb**
 
 In this notebook we measure the characteristic of the artificial gradients of the 1st part of the paper, and of the pMad gradients of the 2nd part of the paper.
-For each curve (when applicable), the length at half maximum and the ratio of the plateau value over the maximal value are measured. 
+For each curve ,when applicable, the length at half maximum and the ratio of the plateau value over the maximal value are measured. 
 
 **Science-Part1-Figures_and_Fitting_procedure.ipynb**
 
