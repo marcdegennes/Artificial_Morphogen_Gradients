@@ -18,7 +18,7 @@ Science -Part1-Invasion of tissue by a GFP bath .ipynb
 
 Science-Part2_two-receptors.ipynb
 
-In this notebook we define the dynamics of the two-receptor artificial gradient model studied the the 2nd part of the paper. 
+In this notebook we define the dynamics of the two-receptor artificial gradient model studied the the 2nd part of the paper. We simulate the steady state gradients for the three experimental conditions of interest (SR, SR+SR, SR+NR) and study the role of NR diffusion and handover by exploring the parameter space around the estimates provided in Supplementary Tables 2-3.
 
 
 References
