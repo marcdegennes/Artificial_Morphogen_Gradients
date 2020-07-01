@@ -28,7 +28,7 @@ This notebook is about the formation of gradients in the peripodial space, on th
 
 **Science-Part2_two-receptors.ipynb**
 
-In this notebook we define the dynamics of the two-receptor artificial gradient model studied the the 2nd part of the paper. We simulate the steady state gradients for the three experimental conditions of interest (SR, SR+SR, SR+NR) and study the role of NR diffusion and handover by exploring the parameter space around the estimates provided in Supplementary Tables 2-3.
+In this notebook we define the dynamics of the two-receptor artificial gradient model studied the the 2nd part of the paper. We simulate the steady state gradients for the three experimental conditions of interest (SR, SR+SR, SR+NR) and study the role of NR diffusion and handover by exploring the parameter space around the estimates provided in Supplementary Tables 2-3. The graphs of Fig 5,S5G,S13 are drawn.
 
 
 References
