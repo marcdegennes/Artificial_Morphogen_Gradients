@@ -2,6 +2,9 @@
 
 Source codes for the paper "Patterning and growth control in vivo by an engineered GFP gradient ". 
 The codes describe the measurement and analysis of experimental data, as well as simulations of the theory described in the Supplementary materials.
+The folder "Part1" is about artificial morphogen gradients with a single receptor, and the folder "Part2" is about gradient formation with two receptors.
+
+# Part1
 
 **Measuring_gradient_properties.ipynb**
 
@@ -25,6 +28,7 @@ In this notebook we look at the invasion of GFP along the baso-apical direction 
 
 This notebook is about the formation of gradients in the peripodial space, on the apical side of cells (see Supplementary 1.8). It first plots the experimental apical profiles for the different conditions (Fig S3-C,D), and then simulates the formation of apical profiles (Fig S3-E).
 
+# Part2
 
 **Science-Part2_two-receptors.ipynb**
 
