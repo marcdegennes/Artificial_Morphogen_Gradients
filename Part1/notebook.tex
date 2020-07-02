@@ -1,0 +1,1410 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Science\_Gradients\_Science-Part1-Figures\_and\_Fitting\_procedure}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection{INTRODUCTION :}\label{introduction}
+
+This notebook contains the main code used in the first part of the paper
+(GFP diffusion with one receptor, and no signaling).
+
+It is divided in two sections:
+
+The first section shows simulations results obtained with the parameters
+from the fit.
+
+The second section describes the method used to fit parameters to the
+experimental data (Nelder-Mead minimization to obtain parameters, and
+bootstrapping method to evaluate their reliability).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{}import packages : }
+        
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+        \PY{k+kn}{from} \PY{n+nn}{scipy.integrate} \PY{k+kn}{import} \PY{n}{odeint}
+        \PY{k+kn}{from} \PY{n+nn}{scipy.interpolate} \PY{k+kn}{import} \PY{n}{CubicSpline}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k+kn}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{os}
+        \PY{k+kn}{import} \PY{n+nn}{sys} 
+        \PY{k+kn}{import} \PY{n+nn}{random}
+        \PY{k+kn}{from} \PY{n+nn}{scipy.optimize} \PY{k+kn}{import} \PY{n}{minimize}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}import experimental data  : }
+        
+        \PY{n+nb}{dir}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./Experimental\PYZus{}Data}\PY{l+s+s1}{\PYZsq{}}
+        
+        \PY{c+c1}{\PYZsh{}import data from high affinity nanobody (VHH)  experiment}
+        \PY{n}{vhh}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n+nb}{dir}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/hh\PYZhy{}VHH\PYZhy{}CD8.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{col} \PY{o}{=} \PY{n}{vhh}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:} \PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{11}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+        \PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{col}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}std}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{col}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}import data from high affinity nanobody + fat body trap experiment}
+        
+        \PY{n}{fat\PYZus{}body}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n+nb}{dir}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/20190712 ptc\PYZhy{}sGFP hh\PYZhy{}VHH\PYZhy{}CD8, lpp\PYZgt{}VHH\PYZhy{}CD8.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{col} \PY{o}{=} \PY{n}{fat\PYZus{}body}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:} \PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{7}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+        \PY{n}{fat\PYZus{}body}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{col}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{fat\PYZus{}body}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}std}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{col}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+        
+        
+        \PY{c+c1}{\PYZsh{}import data from high affinity nanobody overexpression  experiment}
+        
+        \PY{n}{vhh\PYZus{}gal4}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n+nb}{dir}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/20190709 ptc\PYZhy{}sG hhG4 UAS\PYZhy{}VHH\PYZhy{}CD8\PYZus{}copy\PYZus{}pandas.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{col} \PY{o}{=} \PY{n}{vhh\PYZus{}gal4}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:} \PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sample1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sample8}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+        \PY{n}{vhh\PYZus{}gal4}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{col}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{vhh\PYZus{}gal4}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}std}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{col}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}import data from low affinity nanobody experiment}
+        \PY{n}{lag3}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n+nb}{dir}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/20190307 ptc\PYZhy{}sG hh\PYZhy{}LaG3\PYZhy{}CD8.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{col} \PY{o}{=} \PY{n}{lag3}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:} \PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{10}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+        \PY{n}{lag3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{col}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{lag3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}std}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{col}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{}Typical data table : }
+        \PY{n}{vhh}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:}    distance         1         2         3         4         5         6  \textbackslash{}
+        0     0.000  1.980460  2.046955  1.905768  1.779641  2.111069  2.002404   
+        1     0.379  2.183095  2.289465  1.943747  1.794173  2.233780  2.012807   
+        2     0.758  2.370211  2.462151  1.873085  1.853783  2.308227  2.093152   
+        3     1.137  2.432055  2.472848  1.947139  1.916822  2.419099  2.311189   
+        4     1.517  2.402709  2.390250  2.150277  2.036248  2.494102  2.541499   
+        
+                  7         8         9        10        11  signal\_mean  signal\_std  
+        0  1.713182  1.712666  2.015716  1.847048  1.760173     1.897735    0.142587  
+        1  1.817485  1.875941  2.175123  2.196811  2.028036     2.050042    0.175785  
+        2  1.946044  2.052274  2.397054  2.388833  2.167073     2.173808    0.224033  
+        3  2.046759  2.227974  2.609710  2.440612  2.258509     2.280247    0.227025  
+        4  2.094595  2.262136  2.692556  2.617154  2.217941     2.354497    0.218872  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{}Plot of the experimental data : }
+        \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{,}
+                     \PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{,}
+                     \PY{n}{yerr}\PY{o}{=}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}std}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n}{vhh\PYZus{}gal4}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{,}
+                     \PY{n}{vhh\PYZus{}gal4}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{,}
+                     \PY{n}{yerr}\PY{o}{=}\PY{n}{vhh\PYZus{}gal4}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}std}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n}{lag3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{,}
+                     \PY{n}{lag3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{,}
+                     \PY{n}{yerr}\PY{o}{=}\PY{n}{lag3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}std}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n}{fat\PYZus{}body}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{,}
+                     \PY{n}{fat\PYZus{}body}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{,}
+                     \PY{n}{yerr}\PY{o}{=}\PY{n}{fat\PYZus{}body}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}std}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vhh}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vhh increased receptor number}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lag3}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vhh + fat body trap}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fluorescence (normaized)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distance from source}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_3_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Part 1 : Simulations of gradient formation and figures
+:}\label{part-1-simulations-of-gradient-formation-and-figures}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} Simulating gradient formation : }
+        \PY{c+c1}{\PYZsh{}domain size (in um)}
+        \PY{n}{L} \PY{o}{=} \PY{l+m+mi}{116}
+        \PY{c+c1}{\PYZsh{}number of points within the domain}
+        \PY{n}{nb\PYZus{}x\PYZus{}points} \PY{o}{=} \PY{l+m+mi}{200}
+        \PY{c+c1}{\PYZsh{}array of values of x positions}
+        \PY{n}{x\PYZus{}array} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{p}{(}\PY{l+m+mf}{1.0} \PY{o}{\PYZhy{}} \PY{l+m+mf}{1.0} \PY{o}{/} \PY{l+m+mf}{2.0}\PY{o}{/} \PY{n+nb}{float}\PY{p}{(}\PY{n}{nb\PYZus{}x\PYZus{}points}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{n}{L}\PY{p}{,}
+                              \PY{p}{(}\PY{l+m+mf}{1.0} \PY{o}{\PYZhy{}} \PY{l+m+mf}{1.0} \PY{o}{/} \PY{l+m+mf}{2.0}\PY{o}{/} \PY{n+nb}{float}\PY{p}{(}\PY{n}{nb\PYZus{}x\PYZus{}points}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{n}{L}\PY{p}{,}
+                              \PY{n}{nb\PYZus{}x\PYZus{}points}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}spatial resolution}
+        \PY{n}{delta\PYZus{}x} \PY{o}{=} \PY{n}{x\PYZus{}array}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}array}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{c+c1}{\PYZsh{}define a function that will return the time evolution of the concentration profile}
+        \PY{k}{def} \PY{n+nf}{dcdt\PYZus{}function}\PY{p}{(}\PY{n}{c\PYZus{}array}\PY{p}{,}
+                          \PY{n}{t}\PY{p}{,}
+                          \PY{n}{J}\PY{p}{,}
+                          \PY{n}{D}\PY{p}{,}
+                          \PY{n}{h}\PY{p}{,}
+                          \PY{n}{k\PYZus{}on}\PY{p}{,}
+                          \PY{n}{k\PYZus{}off}\PY{p}{,}
+                          \PY{n}{jr}\PY{p}{,}
+                          \PY{n}{kappa\PYZus{}H}\PY{p}{,}
+                          \PY{n}{source\PYZus{}size}\PY{p}{,}
+                          \PY{n}{k\PYZus{}H}\PY{p}{)}\PY{p}{:}
+            \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Differential equations for the concentration equation, discretized in x,}
+        \PY{l+s+sd}{    and for the evolution of the source concentration.}
+        \PY{l+s+sd}{    c\PYZus{}array is the current concentration profile,}
+        \PY{l+s+sd}{    t is the time point}
+        \PY{l+s+sd}{    J is the influx from the source}
+        \PY{l+s+sd}{    D is the diffusion constant}
+        \PY{l+s+sd}{    h is the size of the intercellular space}
+        \PY{l+s+sd}{    k\PYZus{}on is the on rate to receptors}
+        \PY{l+s+sd}{    k\PYZus{}off is the off rate from receptors}
+        \PY{l+s+sd}{    jr is the product of k, the effective degradation rate,}
+        \PY{l+s+sd}{    and nT, the total density of receptors}
+        \PY{l+s+sd}{    kappa\PYZus{}H is the exchange rate between tissue and hemolymph}
+        \PY{l+s+sd}{    source\PYZus{}size is the length of the source}
+        \PY{l+s+sd}{    k\PYZus{}H is the degradation rate in the hemolymph}
+        \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+            \PY{c+c1}{\PYZsh{}cH is the concentration in the hemolymph}
+            \PY{c+c1}{\PYZsh{}here always assumed to be at equilibrium}
+            \PY{n}{cH} \PY{o}{=} \PY{n}{kappa\PYZus{}H} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{c\PYZus{}array}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{kappa\PYZus{}H} \PY{o}{+} \PY{n}{k\PYZus{}H}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{}define a spline; imposing boundary conditions on the first derivative}
+            \PY{c+c1}{\PYZsh{}on the left the derivative is imposed to vanish}
+            \PY{c+c1}{\PYZsh{}on the right the derivative is imposed to vanish}
+            \PY{n}{c\PYZus{}spline} \PY{o}{=} \PY{n}{CubicSpline}\PY{p}{(}\PY{n}{x\PYZus{}array}\PY{p}{,}
+                                   \PY{n}{c\PYZus{}array}\PY{p}{,}
+                                   \PY{n}{bc\PYZus{}type} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{}compute the x derivatives with a spline}
+            \PY{n}{cxx}\PY{o}{=}\PY{n}{c\PYZus{}spline}\PY{p}{(}\PY{n}{x\PYZus{}array}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{} Use masks to do a different calculation within the source and outside}
+            \PY{n}{mask\PYZus{}source} \PY{o}{=} \PY{p}{(}\PY{n}{x\PYZus{}array} \PY{o}{\PYZgt{}}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{n}{source\PYZus{}size}\PY{p}{)} \PY{o}{\PYZam{}}\PY{p}{(}\PY{n}{x\PYZus{}array} \PY{o}{\PYZlt{}}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{}posterior = where the receptors are expressed}
+            \PY{n}{mask\PYZus{}tissue\PYZus{}posterior} \PY{o}{=} \PY{n}{x\PYZus{}array} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}
+            \PY{c+c1}{\PYZsh{} anterior = no receptors}
+            \PY{n}{mask\PYZus{}tissue\PYZus{}anterior} \PY{o}{=} \PY{n}{x\PYZus{}array} \PY{o}{\PYZlt{}} \PY{o}{\PYZhy{}}\PY{n}{source\PYZus{}size}
+            \PY{c+c1}{\PYZsh{} Compute dc/dt, the change of concentration}
+            \PY{n}{dcdt\PYZus{}vector} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{x\PYZus{}array}\PY{p}{)}\PY{p}{)}
+            \PY{n}{dcdt\PYZus{}vector}\PY{p}{[}\PY{n}{mask\PYZus{}source}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{D} \PY{o}{*} \PY{n}{cxx}\PY{p}{[}\PY{n}{mask\PYZus{}source}\PY{p}{]}
+                                        \PY{o}{+} \PY{n}{J}
+                                        \PY{o}{\PYZhy{}} \PY{n}{kappa\PYZus{}H} \PY{o}{*} \PY{p}{(}\PY{n}{c\PYZus{}array}\PY{p}{[}\PY{n}{mask\PYZus{}source}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{cH}\PY{p}{)}\PY{p}{)}
+            \PY{n}{dcdt\PYZus{}vector}\PY{p}{[}\PY{n}{mask\PYZus{}tissue\PYZus{}posterior}\PY{p}{]} \PY{o}{=}  \PY{p}{(}\PY{n}{D} \PY{o}{*} \PY{n}{cxx}\PY{p}{[}\PY{n}{mask\PYZus{}tissue\PYZus{}posterior}\PY{p}{]}
+                                                  \PY{o}{\PYZhy{}} \PY{l+m+mf}{1.0} \PY{o}{/} \PY{n}{h} \PY{o}{*} \PY{n}{k\PYZus{}on}
+                                                   \PY{o}{*} \PY{n}{jr} \PY{o}{*}\PY{n}{c\PYZus{}array}\PY{p}{[}\PY{n}{mask\PYZus{}tissue\PYZus{}posterior}\PY{p}{]} 
+                                                  \PY{o}{/}\PY{p}{(}\PY{n}{k\PYZus{}off} \PY{o}{+} \PY{n}{k\PYZus{}on} \PY{o}{*} \PY{n}{c\PYZus{}array}\PY{p}{[}\PY{n}{mask\PYZus{}tissue\PYZus{}posterior}\PY{p}{]}\PY{p}{)}
+                                                  \PY{o}{\PYZhy{}} \PY{n}{kappa\PYZus{}H} \PY{o}{*}
+                                                   \PY{p}{(}\PY{n}{c\PYZus{}array}\PY{p}{[}\PY{n}{mask\PYZus{}tissue\PYZus{}posterior}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{cH}\PY{p}{)}\PY{p}{)}
+            \PY{n}{dcdt\PYZus{}vector}\PY{p}{[}\PY{n}{mask\PYZus{}tissue\PYZus{}anterior}\PY{p}{]} \PY{o}{=}  \PY{p}{(}\PY{n}{D} \PY{o}{*} \PY{n}{cxx}\PY{p}{[}\PY{n}{mask\PYZus{}tissue\PYZus{}anterior}\PY{p}{]}
+                                                  \PY{o}{\PYZhy{}} \PY{n}{kappa\PYZus{}H} \PY{o}{*}
+                                                  \PY{p}{(}\PY{n}{c\PYZus{}array}\PY{p}{[}\PY{n}{mask\PYZus{}tissue\PYZus{}anterior}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{cH}\PY{p}{)}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{}return the vector dc/dt }
+            \PY{k}{return} \PY{n}{dcdt\PYZus{}vector}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{}Set parameters : }
+        
+        \PY{c+c1}{\PYZsh{}from litterature : }
+        \PY{c+c1}{\PYZsh{}diffusion constant in um/s\PYZca{}2}
+        \PY{n}{D\PYZus{}value} \PY{o}{=} \PY{l+m+mi}{21} 
+        \PY{c+c1}{\PYZsh{}size of intercellular space in um}
+        \PY{n}{h\PYZus{}value} \PY{o}{=} \PY{l+m+mf}{0.02} 
+        \PY{c+c1}{\PYZsh{} on rate for the high affinity nanobody, in /nM/s}
+        \PY{n}{k\PYZus{}on\PYZus{}value} \PY{o}{=} \PY{l+m+mf}{7.7} \PY{o}{*} \PY{l+m+mi}{10} \PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{p}{)} 
+        \PY{c+c1}{\PYZsh{} off rate for the high affinity nanobody, in /s}
+        \PY{n}{k\PYZus{}off\PYZus{}value} \PY{o}{=} \PY{l+m+mf}{1.7} \PY{o}{*} \PY{l+m+mi}{10} \PY{o}{*}\PY{o}{*} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{p}{)} 
+        \PY{c+c1}{\PYZsh{} on rate for the low affinity nanobody,in /nM/s}
+        \PY{n}{k\PYZus{}on\PYZus{}value\PYZus{}LAG3} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{l+m+mi}{10} \PY{o}{*}\PY{o}{*} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{)} 
+        \PY{c+c1}{\PYZsh{} off rate for the low affinity nanobody, in /s}
+        \PY{n}{k\PYZus{}off\PYZus{}value\PYZus{}LAG3} \PY{o}{=} \PY{l+m+mi}{5} \PY{o}{*} \PY{l+m+mi}{10} \PY{o}{*}\PY{o}{*} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)} 
+        \PY{c+c1}{\PYZsh{} sie of the source iin microns}
+        \PY{n}{source\PYZus{}size\PYZus{}value} \PY{o}{=} \PY{l+m+mf}{26.} 
+        
+        
+        \PY{c+c1}{\PYZsh{}from fit (see part2)\PYZsh{} : }
+         \PY{c+c1}{\PYZsh{}influx from the source in nM/s}
+        \PY{n}{J\PYZus{}value} \PY{o}{=} \PY{l+m+mf}{0.32}
+        \PY{c+c1}{\PYZsh{}product of degradation rate and receptor density in nM.um/s}
+        \PY{n}{jr\PYZus{}value} \PY{o}{=} \PY{l+m+mf}{2.7e\PYZhy{}3} 
+        \PY{c+c1}{\PYZsh{}exchange rate between tissue and hemolymph, in /s}
+        \PY{n}{kappa\PYZus{}H\PYZus{}value} \PY{o}{=} \PY{l+m+mf}{0.074} 
+        \PY{c+c1}{\PYZsh{}effective degradation rate in the haemolymph}
+        \PY{n}{k\PYZus{}H\PYZus{}value} \PY{o}{=} \PY{l+m+mf}{0.01} 
+        \PY{c+c1}{\PYZsh{}effective degradation rate in the haemolymph in the fat body trap experiment}
+        \PY{n}{k\PYZus{}H\PYZus{}fat\PYZus{}body\PYZus{}value}\PY{o}{=}\PY{l+m+mf}{0.23}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{def} \PY{n+nf}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{x\PYZus{}data}\PY{p}{,}
+                                         \PY{n}{c\PYZus{}data}\PY{p}{,}
+                                         \PY{n}{J}\PY{p}{,}
+                                         \PY{n}{D}\PY{p}{,}
+                                         \PY{n}{h}\PY{p}{,}
+                                         \PY{n}{k\PYZus{}on}\PY{p}{,}
+                                         \PY{n}{k\PYZus{}off}\PY{p}{,}
+                                         \PY{n}{jr}\PY{p}{,}
+                                         \PY{n}{kappa\PYZus{}H}\PY{p}{,}
+                                         \PY{n}{source\PYZus{}size}\PY{p}{,}
+                                         \PY{n}{k\PYZus{}H}\PY{p}{,}\PY{n}{precision}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{}\PYZdq{}precision\PYZdq{} stops the simulation if a steady state has been reached}
+            \PY{n}{time\PYZus{}0} \PY{o}{=} \PY{l+m+mi}{500}
+            \PY{n}{nb\PYZus{}time\PYZus{}points} \PY{o}{=} \PY{l+m+mi}{20}
+            \PY{n}{pseudo\PYZus{}time\PYZus{}array} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{time\PYZus{}0}\PY{p}{,} \PY{n}{nb\PYZus{}time\PYZus{}points}\PY{p}{)}
+            \PY{n}{initial\PYZus{}condition} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{x\PYZus{}array}\PY{p}{)}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{} calculate the profile of free GFP}
+            \PY{n}{sol} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{dcdt\PYZus{}function}\PY{p}{,}
+                         \PY{n}{initial\PYZus{}condition}\PY{p}{,}
+                         \PY{n}{pseudo\PYZus{}time\PYZus{}array}\PY{p}{,}
+                         \PY{n}{args}\PY{o}{=}\PY{p}{(}\PY{n}{J}\PY{p}{,} \PY{n}{D}\PY{p}{,} \PY{n}{h}\PY{p}{,} \PY{n}{k\PYZus{}on}\PY{p}{,} \PY{n}{k\PYZus{}off}\PY{p}{,} \PY{n}{jr}\PY{p}{,} \PY{n}{kappa\PYZus{}H}\PY{p}{,} \PY{n}{source\PYZus{}size}\PY{p}{,} \PY{n}{k\PYZus{}H}\PY{p}{)}
+                         \PY{p}{)}
+            \PY{n}{sol1}\PY{o}{=}\PY{n}{sol}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+            \PY{n}{sol2}\PY{o}{=}\PY{n}{sol}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+            \PY{n}{j}\PY{o}{=}\PY{l+m+mi}{0}
+            \PY{k}{while} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{sol1}\PY{o}{/}\PY{n}{sol2}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZgt{}}\PY{n}{precision} \PY{p}{:} 
+                \PY{n}{j}\PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+                \PY{n}{pseudo\PYZus{}time\PYZus{}array} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{p}{(}\PY{n}{j}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{time\PYZus{}0}\PY{p}{,} \PY{n}{j}\PY{o}{*}\PY{n}{time\PYZus{}0}\PY{p}{,} \PY{n}{nb\PYZus{}time\PYZus{}points}\PY{p}{)}
+                \PY{n}{sol} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{dcdt\PYZus{}function}\PY{p}{,}
+                         \PY{n}{sol1}\PY{p}{,}
+                         \PY{n}{pseudo\PYZus{}time\PYZus{}array}\PY{p}{,}
+                         \PY{n}{args}\PY{o}{=}\PY{p}{(}\PY{n}{J}\PY{p}{,} \PY{n}{D}\PY{p}{,} \PY{n}{h}\PY{p}{,} \PY{n}{k\PYZus{}on}\PY{p}{,} \PY{n}{k\PYZus{}off}\PY{p}{,} \PY{n}{jr}\PY{p}{,} \PY{n}{kappa\PYZus{}H}\PY{p}{,} \PY{n}{source\PYZus{}size}\PY{p}{,} \PY{n}{k\PYZus{}H}\PY{p}{)}
+                         \PY{p}{)}
+                \PY{n}{sol1}\PY{o}{=}\PY{n}{sol}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+                \PY{n}{sol2}\PY{o}{=}\PY{n}{sol}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+            \PY{n}{final\PYZus{}sol\PYZus{}free\PYZus{}GFP} \PY{o}{=} \PY{n}{sol}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+            \PY{c+c1}{\PYZsh{}posterior = where the receptors are expressed}
+            \PY{n}{mask\PYZus{}tissue\PYZus{}posterior} \PY{o}{=} \PY{n}{x\PYZus{}array} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}
+            \PY{n}{final\PYZus{}sol\PYZus{}bound\PYZus{}GFP}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{zeros\PYZus{}like}\PY{p}{(}\PY{n}{final\PYZus{}sol\PYZus{}free\PYZus{}GFP}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{} from the profile of free GFP, calculate the profile of bound GFP}
+            \PY{n}{final\PYZus{}sol\PYZus{}bound\PYZus{}GFP}\PY{p}{[}\PY{n}{mask\PYZus{}tissue\PYZus{}posterior}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{k\PYZus{}on} \PY{o}{*} 
+                                                          \PY{n}{nT\PYZus{}value} \PY{o}{*} 
+                                                          \PY{n}{final\PYZus{}sol\PYZus{}free\PYZus{}GFP}\PY{p}{[}\PY{n}{mask\PYZus{}tissue\PYZus{}posterior}\PY{p}{]}
+                                                          \PY{o}{/}\PY{p}{(}\PY{n}{k\PYZus{}off} 
+                                                            \PY{o}{+} \PY{n}{k\PYZus{}on} 
+                                                            \PY{o}{*} \PY{n}{final\PYZus{}sol\PYZus{}free\PYZus{}GFP}\PY{p}{[}\PY{n}{mask\PYZus{}tissue\PYZus{}posterior}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{}The global variable nT is just a scaling factor. By setting it to 1, this function returns the normalized }
+            \PY{c+c1}{\PYZsh{}profile of bound receptors nb/nT. For special cases where the total number of receptors varies we change nT.}
+            
+            \PY{c+c1}{\PYZsh{}offset by delta\PYZus{}x}
+            \PY{c+c1}{\PYZsh{}the delta\PYZus{}x ensures that one starts immediately after the end of the source}
+            \PY{n}{predicted\PYZus{}bound\PYZus{}GFP} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{interp}\PY{p}{(}\PY{n}{x\PYZus{}data}\PY{p}{,} \PY{n}{x\PYZus{}array}\PY{o}{\PYZhy{}}\PY{n}{delta\PYZus{}x}\PY{p}{,} \PY{n}{final\PYZus{}sol\PYZus{}bound\PYZus{}GFP}\PY{p}{)}
+            \PY{k}{return} \PY{n}{predicted\PYZus{}bound\PYZus{}GFP}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{precision}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}11}
+        \PY{n}{nT\PYZus{}value} \PY{o}{=} \PY{l+m+mi}{1}
+        \PY{c+c1}{\PYZsh{}simulate the vhh experiment }
+        \PY{n}{result\PYZus{}vhh} \PY{o}{=}\PYZbs{}
+        \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                                     \PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{p}{,}
+                                     \PY{n}{J\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{D\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{h\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{k\PYZus{}on\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{k\PYZus{}off\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{jr\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{kappa\PYZus{}H\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{source\PYZus{}size\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{k\PYZus{}H\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{precision}\PY{p}{)} 
+        \PY{c+c1}{\PYZsh{}simulate fat body experiment }
+        \PY{n}{result\PYZus{}fat\PYZus{}body} \PY{o}{=}\PYZbs{}
+        \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{fat\PYZus{}body}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{299}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{fat\PYZus{}body}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                                     \PY{n}{fat\PYZus{}body}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{299}\PY{p}{]}\PY{p}{,}
+                                     \PY{n}{J\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{D\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{h\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{k\PYZus{}on\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{k\PYZus{}off\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{jr\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{kappa\PYZus{}H\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{source\PYZus{}size\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{k\PYZus{}H\PYZus{}fat\PYZus{}body\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{precision}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}simulate experiment where the nanobody is now lag3}
+        \PY{n}{result\PYZus{}lag3} \PY{o}{=}\PYZbs{}
+        \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{lag3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{295}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{lag3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                                     \PY{n}{lag3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{295}\PY{p}{]}\PY{p}{,}
+                                     \PY{n}{J\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{D\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{h\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{k\PYZus{}on\PYZus{}value\PYZus{}LAG3}\PY{p}{,}
+                                     \PY{n}{k\PYZus{}off\PYZus{}value\PYZus{}LAG3}\PY{p}{,}
+                                     \PY{n}{jr\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{kappa\PYZus{}H\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{source\PYZus{}size\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{k\PYZus{}H\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{precision}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}simulating an increase of receptors }
+        \PY{c+c1}{\PYZsh{}the number of receptors is increased by approx. 20 fold:}
+        \PY{n}{nT\PYZus{}value} \PY{o}{=} \PY{l+m+mi}{20}\PY{o}{*}\PY{n}{nT\PYZus{}value}
+        \PY{n}{result\PYZus{}wall}\PY{o}{=}\PYZbs{}
+        \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{vhh\PYZus{}gal4}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{295}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vhh\PYZus{}gal4}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                                     \PY{n}{vhh\PYZus{}gal4}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{295}\PY{p}{]}\PY{p}{,}
+                                     \PY{n}{J\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{D\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{h\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{k\PYZus{}on\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{k\PYZus{}off\PYZus{}value}\PY{p}{,}
+                                     \PY{l+m+mi}{20}\PY{o}{*}\PY{n}{jr\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{kappa\PYZus{}H\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{source\PYZus{}size\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{k\PYZus{}H\PYZus{}value}\PY{p}{,}
+                                     \PY{n}{precision}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsection{Fig 2.B : Typical profiles produced by the
+model}\label{fig-2.b-typical-profiles-produced-by-the-model}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{nT\PYZus{}value}\PY{o}{=}\PY{l+m+mi}{1}
+         \PY{c+c1}{\PYZsh{}increasing the production of GFP results in saturation of receptors}
+         \PY{n}{result\PYZus{}sat} \PY{o}{=}\PYZbs{}
+         \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                                      \PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{p}{,}
+                                      \PY{l+m+mf}{1.6}\PY{o}{*}\PY{n}{J\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{D\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{h\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{k\PYZus{}on\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{k\PYZus{}off\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{jr\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{kappa\PYZus{}H\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{source\PYZus{}size\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{k\PYZus{}H\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{precision}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}for low GFP production the profile is exponential}
+         \PY{c+c1}{\PYZsh{}scaling factor for curves to have similar sizes}
+         \PY{n}{nT\PYZus{}value}\PY{o}{=}\PY{l+m+mf}{2.5} 
+         \PY{n}{result\PYZus{}no\PYZus{}sat}\PY{o}{=}\PYZbs{}
+         \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                                      \PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{p}{,}
+                                      \PY{l+m+mf}{0.25}\PY{o}{*}\PY{n}{J\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{D\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{h\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{k\PYZus{}on\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{k\PYZus{}off\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{jr\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{kappa\PYZus{}H\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{source\PYZus{}size\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{k\PYZus{}H\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{precision}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}Full degradation of GFP in the hemolymph suppreses the plateau : }
+         \PY{n}{kh\PYZus{}inf}\PY{o}{=}\PY{n}{k\PYZus{}H\PYZus{}value}\PY{o}{*}\PY{l+m+mi}{100000}
+         \PY{n}{result\PYZus{}no\PYZus{}hem}\PY{o}{=}\PYZbs{}
+         \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                                      \PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{p}{,}
+                                      \PY{l+m+mf}{0.25}\PY{o}{*}\PY{n}{J\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{D\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{h\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{k\PYZus{}on\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{k\PYZus{}off\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{jr\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{kappa\PYZus{}H\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{source\PYZus{}size\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{kh\PYZus{}inf}\PY{p}{,}
+                                      \PY{n}{precision}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{11}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{both}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{major}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                  \PY{n}{result\PYZus{}no\PYZus{}sat}\PY{p}{,}
+                  \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,}
+                  \PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                  \PY{n}{result\PYZus{}no\PYZus{}hem}\PY{p}{,}
+                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                  \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,}
+                  \PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                  \PY{n}{result\PYZus{}sat}\PY{p}{,}
+                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                  \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,}
+                  \PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mf}{0.01}\PY{p}{,}\PY{l+m+mf}{1.60}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{80}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Bound GFP [normalized]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{38}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Distance from source \PYZdl{}(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m) \PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{38}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}    
+         
+         \PY{k}{for} \PY{n}{axis} \PY{o+ow}{in} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{top}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{right}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+           \PY{n}{ax2}\PY{o}{.}\PY{n}{spines}\PY{p}{[}\PY{n}{axis}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}linewidth}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_10_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Figure 2C : main curves obtained after
+fit.}\label{figure-2c-main-curves-obtained-after-fit.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{f}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{11}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax1} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{111}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                  \PY{n}{result\PYZus{}vhh}\PY{p}{,}
+                  \PY{n}{label} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Bound GFP}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                  \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,}
+                  \PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{,}
+                  \PY{n}{color} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{g}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{fat\PYZus{}body}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{299}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{fat\PYZus{}body}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                  \PY{n}{result\PYZus{}fat\PYZus{}body}\PY{p}{,}
+                  \PY{n}{label} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Bound GFP}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                  \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,}
+                  \PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{,}
+                  \PY{n}{color} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{m}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{lag3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{295}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{lag3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                  \PY{n}{result\PYZus{}lag3}\PY{p}{,}
+                  \PY{n}{label} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Bound GFP}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                  \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,}
+                  \PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{,}
+                  \PY{n}{color} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{c}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{y1min}\PY{o}{=} \PY{l+m+mi}{0}
+         \PY{n}{y1max}\PY{o}{=}\PY{l+m+mi}{1}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{80}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{n}{y1min}\PY{p}{,}\PY{n}{y1max}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+         \PY{k}{for} \PY{n}{axis} \PY{o+ow}{in} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{top}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{right}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+           \PY{n}{ax1}\PY{o}{.}\PY{n}{spines}\PY{p}{[}\PY{n}{axis}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}linewidth}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Bound GFP [normalized] }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{40}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Distance from source \PYZdl{}(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m) \PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{40}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{[}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{High affinity binder}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                     \PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{High affinity binder + fat body trap}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                     \PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Low affinity binder}\PY{l+s+s1}{\PYZsq{}} \PY{p}{]}\PY{p}{,}
+                    \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{28}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_12_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Figure 3A : Effect of increasing the number of receptors
+:}\label{figure-3a-effect-of-increasing-the-number-of-receptors}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{f2}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{11}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax2} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{111}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                  \PY{n}{result\PYZus{}vhh}\PY{p}{,}
+                  \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,}
+                  \PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{,}
+                  \PY{n}{color} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{g}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{vhh\PYZus{}gal4}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{295}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vhh\PYZus{}gal4}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                  \PY{n}{result\PYZus{}wall}\PY{p}{,}
+                  \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,}
+                  \PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{,}
+                  \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{orange}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{y2min}\PY{o}{=} \PY{l+m+mi}{0}
+         \PY{n}{y2max}\PY{o}{=}\PY{l+m+mf}{2.5}
+         \PY{k}{for} \PY{n}{axis} \PY{o+ow}{in} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{top}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{right}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+           \PY{n}{ax2}\PY{o}{.}\PY{n}{spines}\PY{p}{[}\PY{n}{axis}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}linewidth}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{80}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{n}{y2min}\PY{p}{,}\PY{n}{y2max}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Bound GFP [normalized] }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{40}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Distance from source \PYZdl{}(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m) \PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{40}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{[}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{High affinity binder}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                     \PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{High affinity binder x 20}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                    \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{28}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_14_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Figure S5H : Effect of changing
+kon}\label{figure-s5h-effect-of-changing-kon}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{}receptor surface density, in nM.um}
+         \PY{n}{nT\PYZus{}value} \PY{o}{=} \PY{l+m+mi}{79}
+         \PY{k}{def} \PY{n+nf}{predicted\PYZus{}bound\PYZus{}and\PYZus{}free\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{J}\PY{p}{,}
+                                                    \PY{n}{D}\PY{p}{,}
+                                                    \PY{n}{h}\PY{p}{,}
+                                                    \PY{n}{k\PYZus{}on}\PY{p}{,}
+                                                    \PY{n}{k\PYZus{}off}\PY{p}{,}
+                                                     \PY{n}{jr}\PY{p}{,}
+                                                    \PY{n}{kappa\PYZus{}H}\PY{p}{,}
+                                                    \PY{n}{source\PYZus{}size}\PY{p}{,}
+                                                     \PY{n}{k\PYZus{}H}\PY{p}{)}\PY{p}{:}
+             \PY{n}{time\PYZus{}0} \PY{o}{=} \PY{l+m+mi}{500}
+             \PY{n}{nb\PYZus{}time\PYZus{}points} \PY{o}{=} \PY{l+m+mi}{20}
+             \PY{n}{pseudo\PYZus{}time\PYZus{}array} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{time\PYZus{}0}\PY{p}{,} \PY{n}{nb\PYZus{}time\PYZus{}points}\PY{p}{)}
+             \PY{n}{initial\PYZus{}condition} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{x\PYZus{}array}\PY{p}{)}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} calculate the profile of free GFP}
+             \PY{n}{sol} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{dcdt\PYZus{}function}\PY{p}{,}
+                          \PY{n}{initial\PYZus{}condition}\PY{p}{,}
+                          \PY{n}{pseudo\PYZus{}time\PYZus{}array}\PY{p}{,}
+                          \PY{n}{args}\PY{o}{=}\PY{p}{(}\PY{n}{J}\PY{p}{,} \PY{n}{D}\PY{p}{,} \PY{n}{h}\PY{p}{,} \PY{n}{k\PYZus{}on}\PY{p}{,} \PY{n}{k\PYZus{}off}\PY{p}{,} \PY{n}{jr}\PY{p}{,} \PY{n}{kappa\PYZus{}H}\PY{p}{,} \PY{n}{source\PYZus{}size}\PY{p}{,} \PY{n}{k\PYZus{}H}\PY{p}{)}
+                          \PY{p}{)}
+             \PY{n}{sol1}\PY{o}{=}\PY{n}{sol}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+             \PY{n}{sol2}\PY{o}{=}\PY{n}{sol}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+             \PY{n}{j}\PY{o}{=}\PY{l+m+mi}{0}
+             \PY{k}{while} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{sol1}\PY{o}{/}\PY{n}{sol2}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZgt{}}\PY{n}{precision} \PY{p}{:} 
+                 \PY{n}{j}\PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+                 \PY{n}{pseudo\PYZus{}time\PYZus{}array} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{p}{(}\PY{n}{j}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{time\PYZus{}0}\PY{p}{,} \PY{n}{j}\PY{o}{*}\PY{n}{time\PYZus{}0}\PY{p}{,} \PY{n}{nb\PYZus{}time\PYZus{}points}\PY{p}{)}
+                 \PY{n}{sol} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{dcdt\PYZus{}function}\PY{p}{,}
+                          \PY{n}{sol1}\PY{p}{,}
+                          \PY{n}{pseudo\PYZus{}time\PYZus{}array}\PY{p}{,}
+                          \PY{n}{args}\PY{o}{=}\PY{p}{(}\PY{n}{J}\PY{p}{,} \PY{n}{D}\PY{p}{,} \PY{n}{h}\PY{p}{,} \PY{n}{k\PYZus{}on}\PY{p}{,} \PY{n}{k\PYZus{}off}\PY{p}{,} \PY{n}{jr}\PY{p}{,} \PY{n}{kappa\PYZus{}H}\PY{p}{,} \PY{n}{source\PYZus{}size}\PY{p}{,} \PY{n}{k\PYZus{}H}\PY{p}{)}
+                          \PY{p}{)}
+                 \PY{n}{sol1}\PY{o}{=}\PY{n}{sol}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+                 \PY{n}{sol2}\PY{o}{=}\PY{n}{sol}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+                 
+             \PY{n}{sol\PYZus{}free\PYZus{}GFP} \PY{o}{=} \PY{n}{sol}
+             \PY{c+c1}{\PYZsh{}posterior = where the receptors are expressed}
+             \PY{n}{mask\PYZus{}tissue\PYZus{}posterior} \PY{o}{=} \PY{n}{x\PYZus{}array} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}
+             \PY{n}{sol\PYZus{}bound\PYZus{}GFP} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros\PYZus{}like}\PY{p}{(}\PY{n}{sol\PYZus{}free\PYZus{}GFP}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} from the profile of free GFP, calculate the profile of bound GFP}
+             \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{this\PYZus{}free\PYZus{}profile\PYZus{}GFP} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{sol\PYZus{}free\PYZus{}GFP}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{sol\PYZus{}bound\PYZus{}GFP}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{mask\PYZus{}tissue\PYZus{}posterior}\PY{p}{]} \PY{o}{=}\PYZbs{}
+                 \PY{p}{(}\PY{n}{k\PYZus{}on} \PY{o}{*}
+                  \PY{n}{nT\PYZus{}value} \PY{o}{*}
+                  \PY{n}{this\PYZus{}free\PYZus{}profile\PYZus{}GFP}\PY{p}{[}\PY{n}{mask\PYZus{}tissue\PYZus{}posterior}\PY{p}{]}
+                  \PY{o}{/}\PY{p}{(}\PY{n}{k\PYZus{}off} 
+                   \PY{o}{+} \PY{n}{k\PYZus{}on}
+                  \PY{o}{*} \PY{n}{this\PYZus{}free\PYZus{}profile\PYZus{}GFP}\PY{p}{[}\PY{n}{mask\PYZus{}tissue\PYZus{}posterior}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             \PY{k}{return} \PY{n}{sol\PYZus{}free\PYZus{}GFP}\PY{p}{,}\PY{n}{sol\PYZus{}bound\PYZus{}GFP}
+         
+         \PY{n}{f}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{11}\PY{p}{)}\PY{p}{)}
+         \PY{n}{g}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{11}\PY{p}{)}\PY{p}{)}
+         \PY{n}{leg}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{p}{[}\PY{l+m+mf}{0.1}\PY{p}{,}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{l+m+mf}{0.5}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{:}
+             \PY{n}{result\PYZus{}vhh\PYZus{}all\PYZus{}times}\PY{p}{,} \PY{n}{result\PYZus{}vhh\PYZus{}all\PYZus{}times\PYZus{}bound} \PY{o}{=}\PYZbs{}
+             \PY{n}{predicted\PYZus{}bound\PYZus{}and\PYZus{}free\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{J\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{D\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{h\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{i}\PY{o}{*}\PY{n}{k\PYZus{}on\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{k\PYZus{}off\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{jr\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{kappa\PYZus{}H\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{source\PYZus{}size\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{k\PYZus{}H\PYZus{}value}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{number}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x\PYZus{}array}\PY{p}{,}\PY{n}{result\PYZus{}vhh\PYZus{}all\PYZus{}times}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,}\PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+             \PY{n}{leg}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{p}{)} \PY{o}{+} \PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}k\PYZus{}\PYZob{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{rm\PYZob{}on\PYZcb{}\PYZcb{}\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{g}\PY{o}{.}\PY{n}{number}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x\PYZus{}array}\PY{p}{,}
+                      \PY{n}{result\PYZus{}vhh\PYZus{}all\PYZus{}times\PYZus{}bound}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{o}{/}\PY{n}{h\PYZus{}value}\PY{p}{,}
+                      \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,}
+                      \PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{number}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Free GFP [nM] }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Distance from source \PYZdl{}(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m) \PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{28}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}    
+         \PY{c+c1}{\PYZsh{}plt.legend(leg,fontsize=30)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}
+         \PY{k}{for} \PY{n}{axis} \PY{o+ow}{in} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{top}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{right}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+           \PY{n}{ax2}\PY{o}{.}\PY{n}{spines}\PY{p}{[}\PY{n}{axis}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}linewidth}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{g}\PY{o}{.}\PY{n}{number}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac\PYZob{}n\PYZus{}b\PYZcb{}\PYZob{}h\PYZcb{}\PYZdl{} [nM]  }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{28}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Distance from source \PYZdl{}(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m) \PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}    
+         \PY{c+c1}{\PYZsh{}plt.legend(leg,fontsize=30)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}
+         \PY{k}{for} \PY{n}{axis} \PY{o+ow}{in} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{top}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{right}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+           \PY{n}{ax2}\PY{o}{.}\PY{n}{spines}\PY{p}{[}\PY{n}{axis}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}linewidth}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_16_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_16_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Figure S5I. Effect of changing koff
+:}\label{figure-s5i.-effect-of-changing-koff}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{nT}\PY{o}{=}\PY{l+m+mi}{79}
+         \PY{n}{f}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{11}\PY{p}{)}\PY{p}{)}
+         \PY{n}{g}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{11}\PY{p}{)}\PY{p}{)}
+         \PY{n}{leg}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{p}{[}\PY{l+m+mf}{0.1}\PY{p}{,}\PY{l+m+mf}{0.5}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{:}
+             \PY{n}{result\PYZus{}vhh\PYZus{}all\PYZus{}times}\PY{p}{,} \PY{n}{result\PYZus{}vhh\PYZus{}all\PYZus{}times\PYZus{}bound} \PY{o}{=}\PYZbs{}
+             \PY{n}{predicted\PYZus{}bound\PYZus{}and\PYZus{}free\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{J\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{D\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{h\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{k\PYZus{}on\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{i}\PY{o}{*}\PY{n}{k\PYZus{}off\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{jr\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{kappa\PYZus{}H\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{source\PYZus{}size\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{k\PYZus{}H\PYZus{}value}\PY{p}{)}
+         
+             \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{number}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x\PYZus{}array}\PY{p}{,}\PY{n}{result\PYZus{}vhh\PYZus{}all\PYZus{}times}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,}\PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+             \PY{n}{leg}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{p}{)} \PY{o}{+} \PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}k\PYZus{}\PYZob{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{rm\PYZob{}off\PYZcb{}\PYZcb{}\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{g}\PY{o}{.}\PY{n}{number}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x\PYZus{}array}\PY{p}{,}\PY{n}{result\PYZus{}vhh\PYZus{}all\PYZus{}times\PYZus{}bound}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{o}{/}\PY{n}{h\PYZus{}value}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,}\PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{number}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Free GFP (nM) }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Distance from source \PYZdl{}(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m) \PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{28}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}    
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{leg}\PY{p}{,}\PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}
+         \PY{k}{for} \PY{n}{axis} \PY{o+ow}{in} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{top}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{right}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+           \PY{n}{ax}\PY{o}{.}\PY{n}{spines}\PY{p}{[}\PY{n}{axis}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}linewidth}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{koff\PYZus{}dependancy\PYZus{}free.eps}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{format}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{eps}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{600}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{g}\PY{o}{.}\PY{n}{number}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac\PYZob{}n\PYZus{}b\PYZcb{}\PYZob{}h\PYZcb{}\PYZdl{} [nM]  }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{28}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Distance from source \PYZdl{}(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m) \PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}    
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{leg}\PY{p}{,}\PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}
+         \PY{k}{for} \PY{n}{axis} \PY{o+ow}{in} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{top}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{right}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+           \PY{n}{ax2}\PY{o}{.}\PY{n}{spines}\PY{p}{[}\PY{n}{axis}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}linewidth}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_18_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_18_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Figure S6A Effect of changing strength of the source
+:}\label{figure-s6a-effect-of-changing-strength-of-the-source}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{nT\PYZus{}value} \PY{o}{=} \PY{l+m+mi}{1}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{11}\PY{p}{)}\PY{p}{)}
+         \PY{n}{leg}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{jp} \PY{o+ow}{in} \PY{p}{[}\PY{n}{J\PYZus{}value}\PY{p}{,}\PY{l+m+mf}{1.5}\PY{o}{*}\PY{n}{J\PYZus{}value}\PY{p}{,}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{J\PYZus{}value}\PY{p}{,}\PY{l+m+mf}{2.5}\PY{o}{*}\PY{n}{J\PYZus{}value}\PY{p}{]} \PY{p}{:} 
+             \PY{n}{result} \PY{o}{=} \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                                                   \PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{p}{,}
+                                                   \PY{n}{jp}\PY{p}{,}
+                                                   \PY{n}{D\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{h\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{k\PYZus{}on\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{k\PYZus{}off\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{jr\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{kappa\PYZus{}H\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{source\PYZus{}size\PYZus{}value}\PY{p}{,}
+                                                   \PY{n}{k\PYZus{}H\PYZus{}value}\PY{p}{,}\PY{n}{precision}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                      \PY{n}{result}\PY{p}{,}
+                      \PY{n}{label} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Bound GFP}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                      \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,}
+                      \PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+             \PY{n}{leg}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{j=}\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{jp}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Bound GFP (nM\PYZdl{}.}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m\PYZdl{})  }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{38}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Distance from source \PYZdl{}(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m) \PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{38}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}    
+         \PY{c+c1}{\PYZsh{}plt.title(\PYZsq{}Evolution of profile with j\PYZsq{})    }
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{j}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1.5 j}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2 j}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2.5 j}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{prop}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{30}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}plt.errorbar(increased\PYZus{}j[\PYZsq{}distance\PYZsq{}][7:],increased\PYZus{}j[\PYZsq{}signal\PYZus{}mean\PYZsq{}][7:],yerr=increased\PYZus{}j[\PYZsq{}signal\PYZus{}std\PYZsq{}][7:])}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{1.2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{80}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}
+         \PY{k}{for} \PY{n}{axis} \PY{o+ow}{in} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{top}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{right}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+           \PY{n}{ax2}\PY{o}{.}\PY{n}{spines}\PY{p}{[}\PY{n}{axis}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}linewidth}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_20_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Part 2 : Fitting the
+parameters}\label{part-2-fitting-the-parameters}
+
+    \subsection{a) Minimization through the Nelder-Mead
+method}\label{a-minimization-through-the-nelder-mead-method}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c+c1}{\PYZsh{} We first define the function that we minimize during the fit  : }
+         \PY{k}{def} \PY{n+nf}{curve\PYZus{}fit\PYZus{}function\PYZus{}minimization}\PY{p}{(}\PY{n}{x\PYZus{}data\PYZus{}vhh}\PY{p}{,}
+                                  \PY{n}{c\PYZus{}data\PYZus{}vhh}\PY{p}{,}
+                                  \PY{n}{x\PYZus{}data\PYZus{}fat\PYZus{}body}\PY{p}{,}
+                                  \PY{n}{c\PYZus{}data\PYZus{}fat\PYZus{}body}\PY{p}{,}
+                                  \PY{n}{x\PYZus{}data\PYZus{}lag3}\PY{p}{,}
+                                  \PY{n}{c\PYZus{}data\PYZus{}lag3}\PY{p}{,}
+                                  \PY{n}{J}\PY{p}{,} \PY{n}{D}\PY{p}{,} \PY{n}{h}\PY{p}{,}
+                                  \PY{n}{k\PYZus{}on}\PY{p}{,}
+                                  \PY{n}{k\PYZus{}off}\PY{p}{,}
+                                  \PY{n}{k\PYZus{}on\PYZus{}lag3}\PY{p}{,}
+                                  \PY{n}{k\PYZus{}off\PYZus{}lag3}\PY{p}{,}
+                                  \PY{n}{jr}\PY{p}{,}
+                                  \PY{n}{kappa\PYZus{}H}\PY{p}{,}
+                                  \PY{n}{source\PYZus{}size}\PY{p}{,}
+                                  \PY{n}{k\PYZus{}H}\PY{p}{,}
+                                  \PY{n}{k\PYZus{}H\PYZus{}fat\PYZus{}body}\PY{p}{)}\PY{p}{:}
+             \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}vhh} \PY{o}{=}\PYZbs{}
+             \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{x\PYZus{}data\PYZus{}vhh}\PY{p}{,}
+                                          \PY{n}{c\PYZus{}data\PYZus{}vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{,}
+                                          \PY{n}{J}\PY{p}{,} 
+                                          \PY{n}{D}\PY{p}{,}
+                                          \PY{n}{h}\PY{p}{,}
+                                          \PY{n}{k\PYZus{}on}\PY{p}{,}
+                                          \PY{n}{k\PYZus{}off}\PY{p}{,}
+                                          \PY{n}{jr}\PY{p}{,}
+                                          \PY{n}{kappa\PYZus{}H}\PY{p}{,}
+                                          \PY{n}{source\PYZus{}size}\PY{p}{,}
+                                          \PY{n}{k\PYZus{}H}\PY{p}{,}
+                                          \PY{n}{precision}\PY{p}{)}
+             \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}fat\PYZus{}body} \PY{o}{=}\PYZbs{}
+             \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{x\PYZus{}data\PYZus{}fat\PYZus{}body}\PY{p}{,}
+                                          \PY{n}{c\PYZus{}data\PYZus{}fat\PYZus{}body}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{,}
+                                          \PY{n}{J}\PY{p}{,} 
+                                          \PY{n}{D}\PY{p}{,}
+                                          \PY{n}{h}\PY{p}{,}
+                                          \PY{n}{k\PYZus{}on}\PY{p}{,}
+                                          \PY{n}{k\PYZus{}off}\PY{p}{,}
+                                          \PY{n}{jr}\PY{p}{,}
+                                          \PY{n}{kappa\PYZus{}H}\PY{p}{,}
+                                          \PY{n}{source\PYZus{}size}\PY{p}{,}
+                                          \PY{n}{k\PYZus{}H\PYZus{}fat\PYZus{}body}\PY{p}{,}
+                                          \PY{n}{precision}\PY{p}{)}
+             \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}lag3} \PY{o}{=}\PYZbs{}
+             \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{x\PYZus{}data\PYZus{}lag3}\PY{p}{,}
+                                          \PY{n}{c\PYZus{}data\PYZus{}lag3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{,}
+                                          \PY{n}{J}\PY{p}{,} 
+                                          \PY{n}{D}\PY{p}{,}
+                                          \PY{n}{h}\PY{p}{,}
+                                          \PY{n}{k\PYZus{}on\PYZus{}lag3}\PY{p}{,}
+                                          \PY{n}{k\PYZus{}off\PYZus{}lag3}\PY{p}{,}
+                                          \PY{n}{jr}\PY{p}{,}
+                                          \PY{n}{kappa\PYZus{}H}\PY{p}{,}
+                                          \PY{n}{source\PYZus{}size}\PY{p}{,}
+                                          \PY{n}{k\PYZus{}H}\PY{p}{,}
+                                          \PY{n}{precision}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}calculate the mean of the vhh experiment }
+             \PY{c+c1}{\PYZsh{}this is used to compare different curves}
+             \PY{n}{sim\PYZus{}mean} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}vhh}\PY{p}{)}
+             \PY{n}{exp\PYZus{}mean} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}calculate differences for each individual experimental curves (10 vor vhh, 6 for the fat body trap, and 9 for lag3)}
+             \PY{n}{diff\PYZus{}vhh}\PY{o}{=}\PY{p}{[}\PY{p}{]}\PY{p}{;}\PY{n}{diff\PYZus{}lag3}\PY{o}{=}\PY{p}{[}\PY{p}{]}\PY{p}{;}\PY{n}{diff\PYZus{}fat\PYZus{}body}\PY{o}{=}\PY{p}{[}\PY{p}{]}\PY{p}{;}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{i}\PY{o}{!=}\PY{l+m+mi}{4} \PY{p}{:} 
+                     \PY{n}{diff\PYZus{}vhh}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}vhh}
+                                     \PY{o}{/} \PY{n}{sim\PYZus{}mean}
+                                     \PY{o}{\PYZhy{}} \PY{n}{c\PYZus{}data\PYZus{}vhh}\PY{p}{[}\PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}
+                                     \PY{o}{/}\PY{n}{exp\PYZus{}mean}\PY{p}{)}
+                 \PY{k}{else} \PY{p}{:} \PY{c+c1}{\PYZsh{}special case as this one curve has data on a shorter total length}
+                     \PY{n}{diff\PYZus{}vhh}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}vhh}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{183}\PY{p}{]}
+                                     \PY{o}{/} \PY{n}{sim\PYZus{}mean}
+                                     \PY{o}{\PYZhy{}} \PY{n}{c\PYZus{}data\PYZus{}vhh}\PY{p}{[}\PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{190}\PY{p}{]}
+                                     \PY{o}{/}\PY{n}{exp\PYZus{}mean}\PY{p}{)}
+             
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range} \PY{p}{(}\PY{l+m+mi}{6}\PY{p}{)} \PY{p}{:}
+                 \PY{n}{diff\PYZus{}fat\PYZus{}body}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}fat\PYZus{}body}
+                                      \PY{o}{/} \PY{n}{sim\PYZus{}mean}
+                                      \PY{o}{\PYZhy{}} \PY{n}{c\PYZus{}data\PYZus{}fat\PYZus{}body}\PY{p}{[}\PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}
+                                      \PY{o}{/} \PY{n}{exp\PYZus{}mean}\PY{p}{)}
+             
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range} \PY{p}{(}\PY{l+m+mi}{9}\PY{p}{)} \PY{p}{:}
+                 \PY{n}{diff\PYZus{}lag3}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}lag3}
+                                  \PY{o}{/} \PY{n}{sim\PYZus{}mean}
+                                  \PY{o}{\PYZhy{}} \PY{n}{c\PYZus{}data\PYZus{}lag3}\PY{p}{[}\PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}
+                                  \PY{o}{/} \PY{n}{exp\PYZus{}mean}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}sum the squares of differences}
+             \PY{n}{diff\PYZus{}vhh}\PY{o}{=}\PY{p}{[}\PY{n}{item} \PY{k}{for} \PY{n}{sublist} \PY{o+ow}{in} \PY{n}{diff\PYZus{}vhh} \PY{k}{for} \PY{n}{item} \PY{o+ow}{in} \PY{n}{sublist}\PY{p}{]}
+             \PY{n}{diff\PYZus{}lag3}\PY{o}{=}\PY{p}{[}\PY{n}{item} \PY{k}{for} \PY{n}{sublist} \PY{o+ow}{in} \PY{n}{diff\PYZus{}lag3} \PY{k}{for} \PY{n}{item} \PY{o+ow}{in} \PY{n}{sublist}\PY{p}{]}
+             \PY{n}{diff\PYZus{}fat\PYZus{}body}\PY{o}{=}\PY{p}{[}\PY{n}{item} \PY{k}{for} \PY{n}{sublist} \PY{o+ow}{in} \PY{n}{diff\PYZus{}fat\PYZus{}body} \PY{k}{for} \PY{n}{item} \PY{o+ow}{in} \PY{n}{sublist}\PY{p}{]}
+             \PY{n}{diff\PYZus{}tot}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{n}{diff\PYZus{}vhh}\PY{p}{,}\PY{n}{diff\PYZus{}lag3}\PY{p}{,}\PY{n}{diff\PYZus{}fat\PYZus{}body}\PY{p}{)}\PY{p}{)}
+             \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{diff\PYZus{}tot}\PY{p}{)}\PY{p}{)} 
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{c+c1}{\PYZsh{}initial conditions for the minimization process: format [J,kappa,kh,kh,jr]}
+         \PY{n}{IC}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.14221922}\PY{p}{,} \PY{l+m+mf}{0.05375249}\PY{p}{,} \PY{l+m+mf}{0.00642202}\PY{p}{,} \PY{l+m+mf}{0.14285686}\PY{p}{,} \PY{l+m+mf}{0.00159917}\PY{p}{]}\PY{p}{)} 
+         \PY{c+c1}{\PYZsh{}warning : that minimization step can be rather long (1 hour)}
+         \PY{n}{res} \PY{o}{=} \PY{n}{minimize}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:}\PYZbs{}
+                        \PY{n}{curve\PYZus{}fit\PYZus{}function\PYZus{}minimization}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                                                        \PY{n}{vhh}\PY{p}{,}
+                                                        \PY{n}{fat\PYZus{}body}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{fat\PYZus{}body}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                                                        \PY{n}{fat\PYZus{}body}\PY{p}{,}
+                                                        \PY{n}{lag3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{lag3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                                                        \PY{n}{lag3}\PY{p}{,}
+                                                        \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
+                                                        \PY{n}{D\PYZus{}value}\PY{p}{,}
+                                                        \PY{n}{h\PYZus{}value}\PY{p}{,}
+                                                        \PY{n}{k\PYZus{}on\PYZus{}value}\PY{p}{,}
+                                                        \PY{n}{k\PYZus{}off\PYZus{}value}\PY{p}{,}
+                                                        \PY{n}{k\PYZus{}on\PYZus{}value\PYZus{}LAG3}\PY{p}{,}
+                                                        \PY{n}{k\PYZus{}off\PYZus{}value\PYZus{}LAG3}\PY{p}{,}
+                                                        \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{,}
+                                                        \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
+                                                        \PY{n}{source\PYZus{}size\PYZus{}value}\PY{p}{,}
+                                                        \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}
+                                                        \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+                                                        \PY{n}{IC}\PY{p}{,}
+                                                        \PY{n}{method} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Nelder\PYZhy{}Mead}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+             
+         \PY{n}{result}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{n}{IC}\PY{p}{,}\PY{n}{res}\PY{o}{.}\PY{n}{x}\PY{p}{,}\PY{p}{[}\PY{n}{res}\PY{o}{.}\PY{n}{fun}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{k}{print} \PY{n}{res}\PY{o}{.}\PY{n}{x}
+         \PY{c+c1}{\PYZsh{}the result might slightly differ from the paper value because for the paper we used higher precision (and longer running times)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0.31969156 0.07391194 0.01047011 0.22606671 0.00273742]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{}influx from the source in nM/s}
+         \PY{n}{J\PYZus{}value} \PY{o}{=} \PY{l+m+mf}{0.32} 
+         \PY{c+c1}{\PYZsh{}product of degradtion rate and receptor density in nM.um/s}
+         \PY{n}{jr\PYZus{}value} \PY{o}{=} \PY{l+m+mf}{2.7e\PYZhy{}3} 
+         \PY{c+c1}{\PYZsh{}exchange rate between tissue and hemolymph, in /s}
+         \PY{n}{kappa\PYZus{}H\PYZus{}value} \PY{o}{=} \PY{l+m+mf}{0.074}
+         \PY{c+c1}{\PYZsh{}effective degradation rate in the haemolymph}
+         \PY{n}{k\PYZus{}H\PYZus{}value} \PY{o}{=} \PY{l+m+mf}{0.01} 
+         \PY{c+c1}{\PYZsh{}effective degradation rate in the haemolymph with fat body}
+         \PY{n}{k\PYZus{}H\PYZus{}fat\PYZus{}body\PYZus{}value}\PY{o}{=}\PY{l+m+mf}{0.23}
+\end{Verbatim}
+
+
+    \subsection{b) Bootstrapping :}\label{b-bootstrapping}
+
+We perform bootstrapping via the method of residuals. It consists in
+generating artificial data from the previous fit, and then fit new
+parameters to this artificial data. By repeating this process many times
+(n=1000 for the paper), we get a distribution of fitted parameters
+informs us about the reliability of our fitting process. In the
+following we showcase the method for one particular realization :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{}First we generate the fit for the 3 conditions vhh,vhh and fat body trap, lag3 : }
+         \PY{n}{result\PYZus{}vhh}\PY{o}{=}\PYZbs{}
+         \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                                      \PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{,}
+                                      \PY{n}{J\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{D\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{h\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{k\PYZus{}on\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{k\PYZus{}off\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{jr\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{kappa\PYZus{}H\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{source\PYZus{}size\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{k\PYZus{}H\PYZus{}value}\PY{p}{,}\PY{n}{precision}\PY{p}{)}
+         \PY{n}{m}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{result\PYZus{}vhh}\PY{p}{)} 
+         \PY{c+c1}{\PYZsh{}results are normalized by the mean of the vhh case }
+         \PY{c+c1}{\PYZsh{}so we can compare simulated data and normalized experimental data}
+         \PY{n}{result\PYZus{}vhh}\PY{o}{=}\PY{n}{result\PYZus{}vhh}\PY{o}{/}\PY{n}{m}
+         \PY{n}{result\PYZus{}fat\PYZus{}body}\PY{o}{=}\PYZbs{}
+         \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{fat\PYZus{}body}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{fat\PYZus{}body}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                                      \PY{n}{fat\PYZus{}body}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{,}
+                                      \PY{n}{J\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{D\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{h\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{k\PYZus{}on\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{k\PYZus{}off\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{jr\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{kappa\PYZus{}H\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{source\PYZus{}size\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{k\PYZus{}H\PYZus{}fat\PYZus{}body\PYZus{}value}\PY{p}{,}\PY{n}{precision}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}results are normalized by the mean of the vhh case so we can compare simulated data and normalized experimental data }
+         \PY{n}{result\PYZus{}fat\PYZus{}body}\PY{o}{=}\PY{n}{result\PYZus{}fat\PYZus{}body}\PY{o}{/}\PY{n}{m}
+         \PY{n}{result\PYZus{}lag3}\PY{o}{=}\PYZbs{}
+         \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                                      \PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{,}
+                                      \PY{n}{J\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{D\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{h\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{k\PYZus{}on\PYZus{}value\PYZus{}LAG3}\PY{p}{,}
+                                      \PY{n}{k\PYZus{}off\PYZus{}value\PYZus{}LAG3}\PY{p}{,}
+                                      \PY{n}{jr\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{kappa\PYZus{}H\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{source\PYZus{}size\PYZus{}value}\PY{p}{,}
+                                      \PY{n}{k\PYZus{}H\PYZus{}value}\PY{p}{,}\PY{n}{precision}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}results are normalized by the mean of the vhh case so we can compare simulated data and normalized experimental data }
+         \PY{n}{result\PYZus{}lag3}\PY{o}{=}\PY{n}{result\PYZus{}lag3}\PY{o}{/}\PY{n}{m}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c+c1}{\PYZsh{}Then for each individual experimental curve we create residuals :}
+         \PY{n}{residuals\PYZus{}vhh}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if} \PY{n}{i}\PY{o}{!=}\PY{l+m+mi}{4} \PY{p}{:} \PY{c+c1}{\PYZsh{}special case because the 4th experimental vhh curve is shorter than the others}
+                 \PY{n}{residuals\PYZus{}vhh}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}
+                                      \PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{)}
+                                      \PY{o}{\PYZhy{}}\PY{n}{result\PYZus{}vhh}\PY{p}{)}    
+             \PY{k}{else}\PY{p}{:} 
+                 \PY{n}{residuals\PYZus{}vhh}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{190}\PY{p}{]}
+                                      \PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{)}
+                                      \PY{o}{\PYZhy{}}\PY{n}{result\PYZus{}vhh}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{183}\PY{p}{]}\PY{p}{)}    
+         
+         \PY{n}{residuals\PYZus{}lag3}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{:}
+             \PY{n}{residuals\PYZus{}lag3}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{lag3}\PY{p}{[}\PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}
+                                   \PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{)}
+                                   \PY{o}{\PYZhy{}}\PY{n}{result\PYZus{}lag3}\PY{p}{)}
+             
+         \PY{n}{residuals\PYZus{}fat\PYZus{}body}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{:}
+             \PY{n}{residuals\PYZus{}fat\PYZus{}body}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{fat\PYZus{}body}\PY{p}{[}\PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}
+                                       \PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signal\PYZus{}mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{p}{)}
+                                       \PY{o}{\PYZhy{}}\PY{n}{result\PYZus{}fat\PYZus{}body}\PY{p}{)}                         
+         
+         \PY{n}{vhh\PYZus{}bt}\PY{o}{=}\PY{n}{result\PYZus{}vhh}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+         \PY{n}{lag3\PYZus{}bt}\PY{o}{=}\PY{n}{result\PYZus{}lag3}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+         \PY{n}{fat\PYZus{}body\PYZus{}bt}\PY{o}{=}\PY{n}{result\PYZus{}fat\PYZus{}body}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+         
+         \PY{n}{residuals\PYZus{}vhh}\PY{o}{=}\PY{p}{[}\PY{n}{item} \PY{k}{for} \PY{n}{sublist} \PY{o+ow}{in} \PY{n}{residuals\PYZus{}vhh} \PY{k}{for} \PY{n}{item} \PY{o+ow}{in} \PY{n}{sublist}\PY{p}{]} 
+         \PY{n}{residuals\PYZus{}fat\PYZus{}body}\PY{o}{=}\PY{p}{[}\PY{n}{item} \PY{k}{for} \PY{n}{sublist} \PY{o+ow}{in} \PY{n}{residuals\PYZus{}fat\PYZus{}body} \PY{k}{for} \PY{n}{item} \PY{o+ow}{in} \PY{n}{sublist}\PY{p}{]} 
+         \PY{n}{residuals\PYZus{}lag3}\PY{o}{=}\PY{p}{[}\PY{n}{item} \PY{k}{for} \PY{n}{sublist} \PY{o+ow}{in} \PY{n}{residuals\PYZus{}lag3} \PY{k}{for} \PY{n}{item} \PY{o+ow}{in} \PY{n}{sublist}\PY{p}{]}    
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{c+c1}{\PYZsh{}We generate  bootstrapping data by adding randomly sampled residuals to the fitted data. }
+         \PY{c+c1}{\PYZsh{}We then redo the minimization procedure on the newly created data.}
+         \PY{c+c1}{\PYZsh{}This is done for gen=1 here, but in practice we generate 1000 sets of data }
+         \PY{c+c1}{\PYZsh{}(for gen in [0,1000]) and look at the distribution in the fitted parameters.}
+         \PY{n}{gen}\PY{o}{=}\PY{l+m+mi}{1}\PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{n}{gen}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{result\PYZus{}vhh}\PY{p}{)}\PY{p}{)} \PY{p}{:} 
+             \PY{n}{vhh\PYZus{}bt}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{=}\PY{n}{result\PYZus{}vhh}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{+}\PY{n}{random}\PY{o}{.}\PY{n}{choice}\PY{p}{(}\PY{n}{residuals\PYZus{}vhh}\PY{p}{)}
+             
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{result\PYZus{}lag3}\PY{p}{)}\PY{p}{)} \PY{p}{:} 
+             \PY{n}{lag3\PYZus{}bt}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{=}\PY{n}{result\PYZus{}lag3}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{+}\PY{n}{random}\PY{o}{.}\PY{n}{choice}\PY{p}{(}\PY{n}{residuals\PYZus{}lag3}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{result\PYZus{}vhh}\PY{p}{)}\PY{p}{)} \PY{p}{:} 
+             \PY{n}{fat\PYZus{}body\PYZus{}bt}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{=}\PY{n}{result\PYZus{}fat\PYZus{}body}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{+}\PY{n}{random}\PY{o}{.}\PY{n}{choice}\PY{p}{(}\PY{n}{residuals\PYZus{}fat\PYZus{}body}\PY{p}{)}
+             
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{11}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{result\PYZus{}vhh}\PY{p}{,}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,}\PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{vhh\PYZus{}bt}\PY{p}{,}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,}\PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{result\PYZus{}fat\PYZus{}body}\PY{p}{,}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,}\PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{fat\PYZus{}body\PYZus{}bt}\PY{p}{,}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,}\PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{result\PYZus{}lag3}\PY{p}{,}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,}\PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{lag3\PYZus{}bt}\PY{p}{,}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,}\PY{n}{ms} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Bound GFP (normalized)   }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{38}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Distance from source \PYZdl{}(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m) \PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{38}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Original fit and subsequent bootstrap data}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{fontsize} \PY{o}{=}\PY{l+m+mi}{38}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}    
+         \PY{n}{ax2}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}
+         \PY{k}{for} \PY{n}{axis} \PY{o+ow}{in} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{top}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{right}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+           \PY{n}{ax2}\PY{o}{.}\PY{n}{spines}\PY{p}{[}\PY{n}{axis}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}linewidth}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_29_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{c+c1}{\PYZsh{}We redefine a slightly different curve fitting function because we have only 3 curves now}
+         \PY{k}{def} \PY{n+nf}{curve\PYZus{}fit\PYZus{}function\PYZus{}bootstrapping}\PY{p}{(}\PY{n}{x\PYZus{}data\PYZus{}vhh}\PY{p}{,}
+                                              \PY{n}{c\PYZus{}data\PYZus{}vhh}\PY{p}{,}
+                                              \PY{n}{x\PYZus{}data\PYZus{}fat\PYZus{}body}\PY{p}{,}
+                                              \PY{n}{c\PYZus{}data\PYZus{}fat\PYZus{}body}\PY{p}{,}
+                                              \PY{n}{x\PYZus{}data\PYZus{}lag3}\PY{p}{,}
+                                              \PY{n}{c\PYZus{}data\PYZus{}lag3}\PY{p}{,}
+                                              \PY{n}{J}\PY{p}{,} \PY{n}{D}\PY{p}{,} \PY{n}{h}\PY{p}{,}
+                                              \PY{n}{k\PYZus{}on}\PY{p}{,}
+                                              \PY{n}{k\PYZus{}off}\PY{p}{,}
+                                              \PY{n}{k\PYZus{}on\PYZus{}lag3}\PY{p}{,}
+                                              \PY{n}{k\PYZus{}off\PYZus{}lag3}\PY{p}{,}
+                                              \PY{n}{jr}\PY{p}{,}
+                                              \PY{n}{kappa\PYZus{}H}\PY{p}{,}
+                                              \PY{n}{source\PYZus{}size}\PY{p}{,}
+                                              \PY{n}{k\PYZus{}H}\PY{p}{,}
+                                              \PY{n}{k\PYZus{}H\PYZus{}fat\PYZus{}body}\PY{p}{)}\PY{p}{:}
+             \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}vhh} \PY{o}{=} \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{x\PYZus{}data\PYZus{}vhh}\PY{p}{,}
+                                                                    \PY{n}{c\PYZus{}data\PYZus{}vhh}\PY{p}{,}
+                                                                    \PY{n}{J}\PY{p}{,} 
+                                                                    \PY{n}{D}\PY{p}{,}
+                                                                    \PY{n}{h}\PY{p}{,}
+                                                                    \PY{n}{k\PYZus{}on}\PY{p}{,}
+                                                                    \PY{n}{k\PYZus{}off}\PY{p}{,}
+                                                                    \PY{n}{jr}\PY{p}{,}
+                                                                    \PY{n}{kappa\PYZus{}H}\PY{p}{,}
+                                                                    \PY{n}{source\PYZus{}size}\PY{p}{,}
+                                                                    \PY{n}{k\PYZus{}H}\PY{p}{,}\PY{n}{precision}\PY{p}{)}
+             \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}fat\PYZus{}body} \PY{o}{=} \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{x\PYZus{}data\PYZus{}fat\PYZus{}body}\PY{p}{,}
+                                                                         \PY{n}{c\PYZus{}data\PYZus{}fat\PYZus{}body}\PY{p}{,}
+                                                                         \PY{n}{J}\PY{p}{,} 
+                                                                         \PY{n}{D}\PY{p}{,}
+                                                                         \PY{n}{h}\PY{p}{,}
+                                                                         \PY{n}{k\PYZus{}on}\PY{p}{,}
+                                                                         \PY{n}{k\PYZus{}off}\PY{p}{,}
+                                                                         \PY{n}{jr}\PY{p}{,}
+                                                                         \PY{n}{kappa\PYZus{}H}\PY{p}{,}
+                                                                         \PY{n}{source\PYZus{}size}\PY{p}{,}
+                                                                         \PY{n}{k\PYZus{}H\PYZus{}fat\PYZus{}body}\PY{p}{,}\PY{n}{precision}\PY{p}{)}
+             \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}lag3} \PY{o}{=} \PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}function}\PY{p}{(}\PY{n}{x\PYZus{}data\PYZus{}lag3}\PY{p}{,}
+                                                                     \PY{n}{c\PYZus{}data\PYZus{}lag3}\PY{p}{,}
+                                                                     \PY{n}{J}\PY{p}{,} 
+                                                                     \PY{n}{D}\PY{p}{,}
+                                                                     \PY{n}{h}\PY{p}{,}
+                                                                     \PY{n}{k\PYZus{}on\PYZus{}lag3}\PY{p}{,}
+                                                                     \PY{n}{k\PYZus{}off\PYZus{}lag3}\PY{p}{,}
+                                                                     \PY{n}{jr}\PY{p}{,}
+                                                                     \PY{n}{kappa\PYZus{}H}\PY{p}{,}
+                                                                     \PY{n}{source\PYZus{}size}\PY{p}{,}
+                                                                     \PY{n}{k\PYZus{}H}\PY{p}{,}\PY{n}{precision}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}calculate the mean of the vhh experiment}
+             \PY{c+c1}{\PYZsh{}this is used to compare different curves}
+             \PY{n}{sim\PYZus{}mean} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}vhh}\PY{p}{)}
+             \PY{n}{exp\PYZus{}mean} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{c\PYZus{}data\PYZus{}vhh}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}calculate differences}
+             \PY{n}{diff\PYZus{}vhh} \PY{o}{=} \PY{p}{(}\PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}vhh} \PY{o}{/} \PY{n}{sim\PYZus{}mean} \PY{o}{\PYZhy{}} \PY{n}{c\PYZus{}data\PYZus{}vhh} \PY{o}{/} \PY{n}{exp\PYZus{}mean}\PY{p}{)}
+             \PY{n}{diff\PYZus{}fat\PYZus{}body} \PY{o}{=} \PY{p}{(}\PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}fat\PYZus{}body} \PY{o}{/} \PY{n}{sim\PYZus{}mean} \PY{o}{\PYZhy{}} \PY{n}{c\PYZus{}data\PYZus{}fat\PYZus{}body} \PY{o}{/} \PY{n}{exp\PYZus{}mean}\PY{p}{)}
+             \PY{n}{diff\PYZus{}lag3} \PY{o}{=} \PY{p}{(}\PY{n}{predicted\PYZus{}bound\PYZus{}GFP\PYZus{}lag3}\PY{o}{/} \PY{n}{sim\PYZus{}mean} \PY{o}{\PYZhy{}} \PY{n}{c\PYZus{}data\PYZus{}lag3} \PY{o}{/} \PY{n}{exp\PYZus{}mean}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}sum the squares of differences}
+             \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{diff\PYZus{}vhh}\PY{p}{)} \PY{o}{+} \PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{diff\PYZus{}fat\PYZus{}body}\PY{p}{)}\PY{o}{+} \PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{diff\PYZus{}lag3}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{IC}\PY{o}{=}\PY{n}{res}\PY{o}{.}\PY{n}{x} \PY{c+c1}{\PYZsh{}we use the result for the fit with experimental data as initial condition}
+         
+         \PY{c+c1}{\PYZsh{}warning : that minimization step can be rather long (1 hour )}
+         
+         \PY{n}{res2} \PY{o}{=} \PY{n}{minimize}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:}\PYZbs{}
+                         \PY{n}{curve\PYZus{}fit\PYZus{}function\PYZus{}bootstrapping}\PY{p}{(}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vhh}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                                                          \PY{n}{vhh\PYZus{}bt}\PY{p}{,}
+                                                          \PY{n}{fat\PYZus{}body}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{fat\PYZus{}body}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                                                          \PY{n}{fat\PYZus{}body\PYZus{}bt}\PY{p}{,}
+                                                          \PY{n}{lag3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{211}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{lag3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{,}
+                                                          \PY{n}{lag3\PYZus{}bt}\PY{p}{,}
+                                                          \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
+                                                          \PY{n}{D\PYZus{}value}\PY{p}{,}
+                                                          \PY{n}{h\PYZus{}value}\PY{p}{,}
+                                                          \PY{n}{k\PYZus{}on\PYZus{}value}\PY{p}{,}
+                                                          \PY{n}{k\PYZus{}off\PYZus{}value}\PY{p}{,}
+                                                          \PY{n}{k\PYZus{}on\PYZus{}value\PYZus{}LAG3}\PY{p}{,}
+                                                          \PY{n}{k\PYZus{}off\PYZus{}value\PYZus{}LAG3}\PY{p}{,}
+                                                          \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{,}
+                                                          \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
+                                                          \PY{n}{source\PYZus{}size\PYZus{}value}\PY{p}{,}
+                                                          \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}
+                                                          \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+                        \PY{n}{IC}\PY{p}{,}
+                        \PY{n}{method} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Nelder\PYZhy{}Mead}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{result}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{n}{res2}\PY{o}{.}\PY{n}{x}\PY{p}{,}\PY{p}{[}\PY{n}{res}\PY{o}{.}\PY{n}{fun}\PY{p}{]}\PY{p}{,}\PY{n}{vhh\PYZus{}bt}\PY{p}{,}\PY{n}{fat\PYZus{}body\PYZus{}bt}\PY{p}{,}\PY{n}{lag3\PYZus{}bt}\PY{p}{)}\PY{p}{)}
+         \PY{k}{print} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fit result for this dataset}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{res2}\PY{o}{.}\PY{n}{x}  
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+fit result for this dataset [0.32767497 0.07489964 0.01098895 0.22033028 0.00268215]
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
