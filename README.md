@@ -1,7 +1,7 @@
 # Artificial_Morphogen_Gradients
 
 Source codes for the paper "Patterning and growth control in vivo by an engineered GFP gradient ". 
-The codes describe the measurement and analysis of experimental data, as well as simulations of the theory described in the Supplementary materials.
+The codes describe the measurement and analysis of experimental data, as well as simulations of the theory described in the supplementary materials.
 The folder "Part1" is about artificial morphogen gradients with a single receptor, and the folder "Part2" is about gradient formation with two receptors.
 
 # Part1
