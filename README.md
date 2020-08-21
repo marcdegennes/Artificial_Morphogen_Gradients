@@ -11,6 +11,8 @@ The folder "Part1" is about artificial morphogen gradients with a single recepto
 In this notebook we measure the characteristic of the artificial gradients of the 1st part of the paper, and of the pMad gradients of the 2nd part of the paper.
 For each curve ,when applicable, the length at half maximum and the ratio of the plateau value over the maximal value are measured. 
 
+![Alt text](./Part1/Figures/fig_2B.eps?raw=true)
+
 **Science-Part1_Figures_and_Fitting_procedure.ipynb**
 
 In this notebook we simulate the formation of artificial gradients with one receptor. The code is used to generate figures 2B,2C,3A,S5-H,I,J,K and S6-A of the paper. We then show the minimization procedure used to fit the parameters of the model, as well as an example of the statistical bootstrapping method used to test the validity of our fit. 
