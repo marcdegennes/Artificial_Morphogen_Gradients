@@ -15,6 +15,9 @@ For each curve ,when applicable, the length at half maximum and the ratio of the
 
 In this notebook we simulate the formation of artificial gradients with one receptor. The code is used to generate figures 2B,2C,3A,S5-H,I,J,K and S6-A of the paper. We then show the minimization procedure used to fit the parameters of the model, as well as an example of the statistical bootstrapping method used to test the validity of our fit. 
 
+![GitHub Logo](/Part1/Figures/fig_2B.eps)
+Format: ![Alt Text](url)
+
 **Science_Part1_Effect_of_boosting.ipynb**
 
 GFP is known to fluoresce 1.5 times stronger when bound to the high affinity nanobody. In this notebook we fit the parameters taking this effect in account, and show that the fitted parameters and the predictive curve vary very little when this boosting in GFP fluorescence is included. The graphs of Fig S4-B,D,F are drawn. 
