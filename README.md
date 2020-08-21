@@ -11,7 +11,7 @@ The folder "Part1" is about artificial morphogen gradients with a single recepto
 In this notebook we measure the characteristic of the artificial gradients of the 1st part of the paper, and of the pMad gradients of the 2nd part of the paper.
 For each curve ,when applicable, the length at half maximum and the ratio of the plateau value over the maximal value are measured. 
 
-![Alt text](./Part1/Figures/fig_2B.eps?raw=true)
+![Alt text](./hexagons_s.png?raw=true)
 
 **Science-Part1_Figures_and_Fitting_procedure.ipynb**
 
