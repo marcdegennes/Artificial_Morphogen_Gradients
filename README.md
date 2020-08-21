@@ -11,7 +11,6 @@ The folder "Part1" is about artificial morphogen gradients with a single recepto
 In this notebook we measure the characteristic of the artificial gradients of the 1st part of the paper, and of the pMad gradients of the 2nd part of the paper.
 For each curve ,when applicable, the length at half maximum and the ratio of the plateau value over the maximal value are measured. 
 
-![Alt text](./apical_model_varying_h.eps?raw=true)
 
 **Science-Part1_Figures_and_Fitting_procedure.ipynb**
 
@@ -23,7 +22,7 @@ GFP is known to fluoresce 1.5 times stronger when bound to the high affinity nan
 
 **Science -Part1_Invasion_of_tissue_by_a_GFP_bath_.ipynb**
 
-In this notebook we look at the invasion of GFP along the baso-apical direction of cells when the pouch is put in contact with GFP baths at different concentrations (see Supplementary 1.7). From the dynamics we infer the surface density and diffusivity of receptors. The notebook performs several tests validating the quasi static approximation of equation (30) of the supplementary material. It then fits the experimental data to find the diffusion constant and quantity of receptors, and displays an example of the statistical method used to estimate the error on those parameters.   
+In this notebook we look at the invasion of GFP along the baso-apical direction of cells when the pouch is put in contact with GFP baths at different concentrations (see Supplementary 1.7). From the dynamics we infer the surface density and diffusivity of receptors. The notebook performs several tests validating the quasi static approximation of equation (30) of the supplementary material. It then fits the experimental data to find the diffusion constant and quantity of receptors, generates the graph of Fig-S7-G, and displays an example of the statistical method used to estimate the error on those parameters. 
 
 
 **Science-Part1_Apical_Gradients.ipynb**
